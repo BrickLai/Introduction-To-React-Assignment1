@@ -18,7 +18,7 @@ async function getMovies() {
              const data = await result.json();
              const movies = data.results;
 
-             for(let i = 0; i < 10; i++ ) {
+             for(let i = 0; i < 12; i++ ) {
              const div = document.createElement('div');
              movieRow.appendChild(div);
              div.innerHTML = `<div class="photo"><img src=${movies[i].img}></div> 
@@ -36,8 +36,7 @@ getMovies();
 
 const searchTicket = document.querySelector('.search-ticket .searchticket');
 const movieReplied = document.querySelector('.msg-reply .movieReplied');
-const searchCity = document.querySelector('.searchcity');
-const cityReplied = document.querySelector('.msg-reply .cityReplied');
+
 
 searchTicket.addEventListener('input',  () => {
         const movieCharacters = searchTicket.value.toLowerCase();
@@ -68,24 +67,25 @@ searchTicket.addEventListener('input',  () => {
                                 .catch(error => console.log(error));
     })
     
-    async function getCities() {
-        try {
-            const response = await fetch(citiesAPI, options);
-            if (!response.ok) {
-                throw new Error(`${response.statusText} (${response.status})`);
-            }
-            const data = await response.json();
-            cityList(data.cities);
-        } catch(error) {
-           //console.log(error);
+    // async function getCities() {
+    //     try {
+    //         const response = await fetch(citiesAPI, options);
+    //         if (!response.ok) {
+    //             throw new Error(`${response.statusText} (${response.status})`);
+    //         }
+    //         const data = await response.json();
+    //         cityList(data.cities);
+    //     } catch(error) {
+    //        //console.log(error);
     
-        }
-    }
-    getCities();
+    //     }
+    // }
+    // getCities();
 
 
-
-
+    const searchCity = document.querySelector('.search-city .searchcity');
+    const cityReplied = document.querySelector('.msg-reply .cityReplied');
+    
     searchCity.addEventListener('input',  () => {
         const cityCharacters = searchCity.value.toLowerCase();
         if (cityCharacters.length < 2) {
@@ -94,14 +94,14 @@ searchTicket.addEventListener('input',  () => {
           }
         fetch(citiesAPI,options).then(response => response.json())
                                 .then(data => {
-                                    const cityList=data.results;
-                                    const filterCities=cityList.filter(a => a.title.toLowerCase().includes(movieCharacters));
+                                    const cityList=data.cities;
+                                    const filterCities=cityList.filter(a => a.name.toLowerCase().includes(cityCharacters));
                                     if(filterCities.length>0)
                                     {
                                         cityReplied.innerHTML = '';
                                         filterCities.forEach(a => {
                                             const span=document.createElement('span');
-                                            span.textContent=a.title;
+                                            span.textContent=a.name;
                                             span.addEventListener('click',()=>{
                                                 cityCharacters.value=span.textContent;
                                                 cityReplied.innerHTML='';
