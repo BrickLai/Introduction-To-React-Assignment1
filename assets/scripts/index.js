@@ -36,6 +36,8 @@ getMovies();
 
 const searchTicket = document.querySelector('.search-ticket .searchticket');
 const movieReplied = document.querySelector('.msg-reply .movieReplied');
+const searchCity = document.querySelector('.searchcity');
+const cityReplied = document.querySelector('.msg-reply .cityReplied');
 
 searchTicket.addEventListener('input',  () => {
         const movieCharacters = searchTicket.value.toLowerCase();
@@ -82,8 +84,7 @@ searchTicket.addEventListener('input',  () => {
     getCities();
 
 
-    const searchCity = document.querySelector('.searchcity');
-    const cityReplied = document.querySelector('.msg-reply .cityReplied');
+
 
     searchCity.addEventListener('input',  () => {
         const cityCharacters = searchCity.value.toLowerCase();
