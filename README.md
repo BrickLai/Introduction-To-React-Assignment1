@@ -1,4 +1,4 @@
-<h2>Introduction_To_React_Assignment01</h2>
+<h2>Movie Tickets</h2>
 
 <h3>Technologies</h3>
 <li>HTML5</li>
